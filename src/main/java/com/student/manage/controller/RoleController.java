@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping("/")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "获取所有角色", security = {@SecurityRequirement(name = "Authorization")})
     public ResponseInfo<List<Role>> getAllRoles() {
         return ResponseInfo.ok(roleService.getAllRoles());
@@ -38,12 +40,14 @@ public class RoleController {
 
     @Operation(summary = "添加角色", security = {@SecurityRequirement(name = "Authorization")})
     @PostMapping("/role")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseInfo<Role> addRole(@RequestBody AddRole role) {
         return ResponseInfo.ok(roleService.addRole(role));
     }
 
     @Operation(summary = "删除角色", security = {@SecurityRequirement(name = "Authorization")})
     @DeleteMapping("/role/{rid}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseInfo<?> deleteRoleById(@PathVariable Integer rid) {
         if (roleService.deleteRoleById(rid) == 1) {
             return ResponseInfo.ok("删除成功!");
@@ -53,6 +57,7 @@ public class RoleController {
 
     @Operation(summary = "修改角色", security = {@SecurityRequirement(name = "Authorization")})
     @PostMapping("/role/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseInfo<?> updateRole(@RequestBody Role role) {
         if (roleService.updateRole(role) == 1) {
             return ResponseInfo.ok("修改成功!");

@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "添加用户", security = {@SecurityRequirement(name = "Authorization")})
     public ResponseInfo<User> addUser(@RequestBody @Valid AddUserInfo addUserInfo) {
         return ResponseInfo.ok(userService.addUser(addUserInfo));
@@ -52,12 +54,14 @@ public class UserController {
     }
 
     @GetMapping("/{uid}")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "删除用户", security = {@SecurityRequirement(name = "Authorization")})
     public ResponseInfo<Boolean> deleteUserById(@PathVariable Integer uid) {
         return ResponseInfo.ok(userService.deleteUserById(uid));
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "修改用户信息", security = {@SecurityRequirement(name = "Authorization")})
     public ResponseInfo<User> updateUser(@RequestBody UpdateUserReq updateUserReq) {
         return ResponseInfo.ok(userService.updateUser(updateUserReq));
