@@ -1,0 +1,63 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/student_manage
+    username: root
+    password: admin
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      lettuce:
+        pool:
+          enabled: true
+    jdbc:
+      dialect: mysql
+  web:
+    resources:
+      static-locations: file:${fileUploadPath}, classpath:/static
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+
+  threads:
+    virtual:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+logging:
+  file:
+    path: logs
+  level:
+    com.student.manage.mapper: debug
+  logback:
+    rolling policy:
+      max-history: 30
+      clean-history-on-start: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    defaultModelExpandDepth: 4
+    validatorUrl: none
+    persistAuthorization: true
+    use-root-path: true
+    filter: true
+
+
+fileUploadPath: files/
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  defaultCount: true
