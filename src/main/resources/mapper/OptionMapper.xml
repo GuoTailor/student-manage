@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.OptionMapper">
+  <resultMap id="BaseResultMap" type="com.student.manage.domain.Option">
+    <!--@mbg.generated-->
+    <!--@Table `option`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="option_description" jdbcType="VARCHAR" property="optionDescription" />
+    <result column="answers" jdbcType="BLOB" property="answers" />
+    <result column="no" jdbcType="VARCHAR" property="no" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, question_id, option_description, answers, `no`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `option`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `option`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.Option" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `option` (question_id, option_description, answers, 
+      `no`)
+    values (#{questionId,jdbcType=INTEGER}, #{optionDescription,jdbcType=VARCHAR}, #{answers,jdbcType=BLOB}, 
+      #{no,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.Option" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `option`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="optionDescription != null">
+        option_description,
+      </if>
+      <if test="answers != null">
+        answers,
+      </if>
+      <if test="no != null">
+        `no`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="questionId != null">
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="optionDescription != null">
+        #{optionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="answers != null">
+        #{answers,jdbcType=BLOB},
+      </if>
+      <if test="no != null">
+        #{no,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.student.manage.domain.Option">
+    <!--@mbg.generated-->
+    update `option`
+    <set>
+      <if test="questionId != null">
+        question_id = #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="optionDescription != null">
+        option_description = #{optionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="answers != null">
+        answers = #{answers,jdbcType=BLOB},
+      </if>
+      <if test="no != null">
+        `no` = #{no,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.student.manage.domain.Option">
+    <!--@mbg.generated-->
+    update `option`
+    set question_id = #{questionId,jdbcType=INTEGER},
+      option_description = #{optionDescription,jdbcType=VARCHAR},
+      answers = #{answers,jdbcType=BLOB},
+      `no` = #{no,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.Option" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `option`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      question_id,
+      option_description,
+      answers,
+      `no`,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{questionId,jdbcType=INTEGER},
+      #{optionDescription,jdbcType=VARCHAR},
+      #{answers,jdbcType=BLOB},
+      #{no,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      question_id = #{questionId,jdbcType=INTEGER},
+      option_description = #{optionDescription,jdbcType=VARCHAR},
+      answers = #{answers,jdbcType=BLOB},
+      `no` = #{no,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.Option" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `option`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="questionId != null">
+        question_id,
+      </if>
+      <if test="optionDescription != null">
+        option_description,
+      </if>
+      <if test="answers != null">
+        answers,
+      </if>
+      <if test="no != null">
+        `no`,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="questionId != null">
+        #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="optionDescription != null">
+        #{optionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="answers != null">
+        #{answers,jdbcType=BLOB},
+      </if>
+      <if test="no != null">
+        #{no,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="questionId != null">
+        question_id = #{questionId,jdbcType=INTEGER},
+      </if>
+      <if test="optionDescription != null">
+        option_description = #{optionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="answers != null">
+        answers = #{answers,jdbcType=BLOB},
+      </if>
+      <if test="no != null">
+        `no` = #{no,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+    <select id="selectByQuestionId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `option`
+        where question_id = #{questionId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.UserOptionMapper">
+    <resultMap id="BaseResultMap" type="com.student.manage.domain.UserOption">
+        <!--@mbg.generated-->
+        <!--@Table user_option-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="option_id" jdbcType="INTEGER" property="optionId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="question_id" jdbcType="INTEGER" property="questionId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        user_id,
+        option_id,
+        create_time,
+        question_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_option
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from user_option
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.UserOption"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_option (user_id, option_id, create_time,
+                                 question_id)
+        values (#{userId,jdbcType=INTEGER}, #{optionId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+                #{questionId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.UserOption"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_option
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="optionId != null">
+                option_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="questionId != null">
+                question_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="optionId != null">
+                #{optionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="questionId != null">
+                #{questionId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.student.manage.domain.UserOption">
+        <!--@mbg.generated-->
+        update user_option
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="optionId != null">
+                option_id = #{optionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="questionId != null">
+                question_id = #{questionId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.student.manage.domain.UserOption">
+        <!--@mbg.generated-->
+        update user_option
+        set user_id     = #{userId,jdbcType=INTEGER},
+            option_id   = #{optionId,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            question_id = #{questionId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.student.manage.domain.UserOption"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_option
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            user_id,
+            option_id,
+            create_time,
+            question_id,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            #{userId,jdbcType=INTEGER},
+            #{optionId,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP},
+            #{questionId,jdbcType=INTEGER},
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            user_id     = #{userId,jdbcType=INTEGER},
+            option_id   = #{optionId,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            question_id = #{questionId,jdbcType=INTEGER},
+        </trim>
+    </insert>
+    <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.student.manage.domain.UserOption" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_option
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="optionId != null">
+                option_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="questionId != null">
+                question_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="optionId != null">
+                #{optionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="questionId != null">
+                #{questionId,jdbcType=INTEGER},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="optionId != null">
+                option_id = #{optionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="questionId != null">
+                question_id = #{questionId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByQuestionId" resultType="com.student.manage.domain.Option">
+        select o.*
+        from `option` as o
+                 left join student_manage.user_option uo on o.id = uo.option_id
+        where user_id = #{userId}
+          and o.question_id = #{questionId}
+    </select>
+
+    <select id="selectByUserAndQuestionAndOption" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_option
+        where user_id = #{userId}
+          and question_id = #{questionId}
+          and option_id = #{optionId}
+    </select>
+
+    <select id="selectOptionByUserId" resultType="com.student.manage.domain.Option">
+        select o.*
+        from user_option uo
+                 left join `option` o on o.id = uo.option_id
+                 left join exam_question eq on eq.id = o.question_id
+        where eq.no = #{no}
+          and uo.user_id = #{userId}
+    </select>
+
+    <delete id="cleanOption">
+        delete user_option
+        from user_option
+                 join exam_question eq on eq.id = user_option.question_id
+        where eq.no = #{no} and user_id = #{userId}
+    </delete>
+
+    <select id="selectByUserAndQuestion" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_option
+        where user_id = #{userId}
+          and question_id = #{questionId}
+    </select>
+</mapper>

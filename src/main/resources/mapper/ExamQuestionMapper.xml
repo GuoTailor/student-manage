@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.ExamQuestionMapper">
+    <resultMap id="BaseResultMap" type="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        <!--@Table exam_question-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+        <result column="score" jdbcType="FLOAT" property="score"/>
+        <result column="create_at" jdbcType="VARCHAR" property="createAt"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="multiple_choice" jdbcType="BLOB" property="multipleChoice"/>
+        <result column="no" jdbcType="VARCHAR" property="no"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        `describe`,
+        score,
+        create_at,
+        create_time,
+        multiple_choice,
+        `no`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from exam_question
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from exam_question
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        insert into exam_question (id, `describe`, score,
+                                   create_at, create_time, multiple_choice,
+                                   `no`)
+        values (#{id,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{score,jdbcType=FLOAT},
+                #{createAt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{multipleChoice,jdbcType=BLOB},
+                #{no,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        insert into exam_question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="multipleChoice != null">
+                multiple_choice,
+            </if>
+            <if test="no != null">
+                `no`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="describe != null">
+                #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=FLOAT},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="multipleChoice != null">
+                #{multipleChoice,jdbcType=BLOB},
+            </if>
+            <if test="no != null">
+                #{no,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        update exam_question
+        <set>
+            <if test="describe != null">
+                `describe` = #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=FLOAT},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="multipleChoice != null">
+                multiple_choice = #{multipleChoice,jdbcType=BLOB},
+            </if>
+            <if test="no != null">
+                `no` = #{no,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        update exam_question
+        set `describe`      = #{describe,jdbcType=VARCHAR},
+            score           = #{score,jdbcType=FLOAT},
+            create_at       = #{createAt,jdbcType=VARCHAR},
+            create_time     = #{createTime,jdbcType=TIMESTAMP},
+            multiple_choice = #{multipleChoice,jdbcType=BLOB},
+            `no`            = #{no,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="insertOrUpdate" parameterType="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        insert into exam_question
+            (id, `describe`, score, create_at, create_time, multiple_choice, `no`)
+        values (#{id,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, #{score,jdbcType=FLOAT},
+                #{createAt,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{multipleChoice,jdbcType=BLOB}, #{no,jdbcType=VARCHAR})
+        on duplicate key update id              = #{id,jdbcType=INTEGER},
+                                `describe`      = #{describe,jdbcType=VARCHAR},
+                                score           = #{score,jdbcType=FLOAT},
+                                create_at       = #{createAt,jdbcType=VARCHAR},
+                                create_time     = #{createTime,jdbcType=TIMESTAMP},
+                                multiple_choice = #{multipleChoice,jdbcType=BLOB},
+                                `no`            = #{no,jdbcType=VARCHAR}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.student.manage.domain.ExamQuestion">
+        <!--@mbg.generated-->
+        insert into exam_question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="multipleChoice != null">
+                multiple_choice,
+            </if>
+            <if test="no != null">
+                `no`,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="describe != null">
+                #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=FLOAT},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="multipleChoice != null">
+                #{multipleChoice,jdbcType=BLOB},
+            </if>
+            <if test="no != null">
+                #{no,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="describe != null">
+                `describe` = #{describe,jdbcType=VARCHAR},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=FLOAT},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="multipleChoice != null">
+                multiple_choice = #{multipleChoice,jdbcType=BLOB},
+            </if>
+            <if test="no != null">
+                `no` = #{no,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from exam_question
+    </select>
+
+    <select id="selectByNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from exam_question
+        where `no` = #{no,jdbcType=VARCHAR}
+    </select>
+</mapper>

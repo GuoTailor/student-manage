@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.MessageMapper">
+    <resultMap id="BaseResultMap" type="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        <!--@Table message-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="label" jdbcType="VARCHAR" property="label"/>
+        <result column="verbal_trick" jdbcType="VARCHAR" property="verbalTrick"/>
+        <result column="describe" jdbcType="VARCHAR" property="describe"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        `label`,
+        verbal_trick,
+        `describe`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from message
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        insert into message (id, `label`, verbal_trick,
+                             `describe`)
+        values (#{id,jdbcType=INTEGER}, #{label,jdbcType=VARCHAR}, #{verbalTrick,jdbcType=VARCHAR},
+                #{describe,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="label != null">
+                `label`,
+            </if>
+            <if test="verbalTrick != null">
+                verbal_trick,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="label != null">
+                #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="verbalTrick != null">
+                #{verbalTrick,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null">
+                #{describe,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        update message
+        <set>
+            <if test="label != null">
+                `label` = #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="verbalTrick != null">
+                verbal_trick = #{verbalTrick,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null">
+                `describe` = #{describe,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        update message
+        set `label`      = #{label,jdbcType=VARCHAR},
+            verbal_trick = #{verbalTrick,jdbcType=VARCHAR},
+            `describe`   = #{describe,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="insertOrUpdate" parameterType="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        insert into message
+            (id, `label`, verbal_trick, `describe`)
+        values (#{id,jdbcType=INTEGER}, #{label,jdbcType=VARCHAR}, #{verbalTrick,jdbcType=VARCHAR},
+                #{describe,jdbcType=VARCHAR})
+        on duplicate key update id           = #{id,jdbcType=INTEGER},
+                                `label`      = #{label,jdbcType=VARCHAR},
+                                verbal_trick = #{verbalTrick,jdbcType=VARCHAR},
+                                `describe`   = #{describe,jdbcType=VARCHAR}
+    </insert>
+    <insert id="insertOrUpdateSelective" parameterType="com.student.manage.domain.Message">
+        <!--@mbg.generated-->
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="label != null">
+                `label`,
+            </if>
+            <if test="verbalTrick != null">
+                verbal_trick,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="label != null">
+                #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="verbalTrick != null">
+                #{verbalTrick,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null">
+                #{describe,jdbcType=VARCHAR},
+            </if>
+        </trim>
+        on duplicate key update
+        <trim suffixOverrides=",">
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="label != null">
+                `label` = #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="verbalTrick != null">
+                verbal_trick = #{verbalTrick,jdbcType=VARCHAR},
+            </if>
+            <if test="describe != null">
+                `describe` = #{describe,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>
