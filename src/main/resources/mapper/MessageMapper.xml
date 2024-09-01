@@ -151,4 +151,10 @@
             </if>
         </trim>
     </insert>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+    </select>
 </mapper>
